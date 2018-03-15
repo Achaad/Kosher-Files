@@ -33,7 +33,7 @@ class ChangeMetadata extends java.nio.file.SimpleFileVisitor<Path> {
             double elevation = 13;
             HebrewTime ht = new HebrewTime(locationName, timeZone, latitude, longitude, elevation);
             if (ht.isShabbat(creationTime)) {
-                LocalDateTime alteredTime = creationTime.minusDays(1L);
+                LocalDateTime alteredTime = creationTime.minusDays(1);
                 FileTime ft = FileTime.from(alteredTime.atZone(ZoneId.systemDefault()).toInstant());
                 Files.setAttribute(file, "creationTime", ft);
                 System.out.println(file.getFileName());
